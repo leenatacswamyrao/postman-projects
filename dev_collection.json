@@ -1,0 +1,66 @@
+{
+  "info": {
+    "_postman_id": "50101586-d68b-4fcf-b08f-6b8c04f02522",
+    "name": "Chain",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53482473",
+    "_collection_link": "https://go.postman.co/collection/53482473-50101586-d68b-4fcf-b08f-6b8c04f02522?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Chain_Req_1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Parse the response\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "// Log it to the console so you can see if it's working\r",
+              "console.log(\"New ID created is: \" + response.id);\r",
+              "\r",
+              "// Set the environment variable\r",
+              "pm.environment.set(\"new_post_id\", response.id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/posts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Chain_Req_2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/posts/{{new_post_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "{{new_post_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
